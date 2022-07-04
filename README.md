@@ -13,9 +13,9 @@ The code intends to ingest into a database and analyse data that is dumped regul
 
 ##### 2) src
 'src' contains several files:
-1) analysis.py, which are useful method to perform analysis on a single file. e.g. extract company from email adress, preprocess a dataset (at the moment it's almost a no operation here, but we can think of more complex processing -e.g. imputation/removal of missing values, ...-), perform analysis on the data themselves.
+1) analysis.py, which are useful methods to perform analysis on a single file. e.g. extract companies from email adress, preprocess a dataset (at the moment it's almost a no-operation here, but we can think of more complex processing -e.g. imputation/removal of missing values, ...-), perform analysis on the data themselves.
 2) data-loader.py, which is mainly composed with utils methods to load the data, either from s3 bucket using boto3, or from local (for development, I downloaded one dataset as parquet and perform analysis on it*). Using boto3 methods, we could think of loading using bytes, instead of as a whole, if datasets increase.
-3) database.py, is a class for postgresql database with utils methods. It 'contains' an abstract class so we could think of having different implementation if we wanted to use another kind of database. It also contains the methods to perform analytics on the database that would corresponds to an aggregation of different database. e.g. 'since 2019, which user has perform the most events".
+3) database.py, is a class for postgresql database with utils methods. It 'contains' an abstract class so we could think of having different implementations if we wanted to use another kind of database. It also contains the methods to perform analytics on the database that would corresponds to an aggregation of different month data. e.g. 'since 2019, which user has perform the most events".
 4) main-get-insights.py, performs analytics on either one single dataset, or on the database.
 5) main-insert-in-database.py, ingests into the database one month of data. It gives as an input a year and a month.
 To automate the process, we could think of deploying the following code (5.) in a lambda, that would be triggered on the 1st of every month and collect last events.csv file. 
