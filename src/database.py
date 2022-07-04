@@ -30,7 +30,7 @@ class SQLDatabase(Database, metaclass=Singleton):
         return SQLDatabase()._get_conn().cursor()
 
     def insert(self, query, values) -> None:
-        psycopg2.extras.execute_values(SQLDatabase()._get_cur(), query, values)
+        psycopg2.extras.execute_values(SQLDatabase()._get_cur(), query, values, template=None, page_size=len(values))
 
     def get(self):
         pass
