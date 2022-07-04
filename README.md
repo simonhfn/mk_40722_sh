@@ -5,6 +5,13 @@ The code intends to ingest into a database and analyse data that is dumped regul
 2) Ingest a single month worth of data (= a single file) into a database. The schema of the database has been designed to account for the problematic above. We can think of a better schema depending on a more define use case. It's done on purpose that we don't have primary key. The goal is to record alongisde the data when it's been ingested, so we can perform aggregation, or other analytics.
 
 ### Code
+##### 0) top-level files
+1) .gitignore (see *)
+2) LICENSE, licensed under BDS2
+3) project.py, contains useful variable for the global project (local credentials for the database). We shouldn't put useful credentials here! but use environment variable that would be inside AWS ecosystem.
+4) This is README.md
+5) requirements.txt, I could have precised each time the version, but it assumes latest for now.
+
 ##### 1) scripts
 'Script' contains 3 files:
 1) a yaml file that correspond to a docker image for a postgresql instance. This is useful for local development and test. Long term-wise we can think of having a more powerful instance hosted on the cloud (e.g. AWS), with replicas and other features. To launch it -> docker compose up
